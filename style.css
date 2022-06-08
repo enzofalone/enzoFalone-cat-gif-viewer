@@ -1,0 +1,150 @@
+/* import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+
+/* default settings for all elements to inherit  */
+* {
+    box-sizing: border-box;
+    margin: 0;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+
+    
+    background-color: black;
+    color: white;
+    
+}
+
+/* top section */
+
+main {
+    height: 90vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+
+    margin-bottom: 2vh;
+}
+
+main>h1 {
+    margin: 2vh;
+
+    font-size: 3.5vw;
+    background-image:linear-gradient(49deg, rgba(255,0,0,1) 0%, rgba(0,255,38,1) 47%, rgba(8,0,255,1) 100%);
+    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+label {
+    font-size: 1.5rem;
+}
+
+#query {
+    padding: 0.5rem 1rem;
+    margin: 10px;
+    font-size: 1rem;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    text-align: center;
+
+    background-color:black;
+    color: white;
+    border: solid white;
+    border-radius: 5px;
+    margin: 10px;
+
+    transition: all 200ms;
+}
+
+.button:hover {
+    background-color: white;
+    color: purple;
+    cursor:pointer;
+}
+
+/* image section */
+section {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    width: 90vw;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    gap: 1vh 2vw;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.result-image {
+    max-width: 25vw;
+    margin: 0 auto;
+    /* max-height:fit-content; */
+    flex-basis: 32.5%;
+}
+
+/* show more button */
+
+.button-more {
+    display:block;
+    text-align: center;
+    background-color: black;
+    color: white;
+
+    border-radius: 5px;
+    border: solid white;
+
+    margin: 4.5vh 0;
+    padding: 1rem 3rem;
+
+    transition: all 200ms;
+}
+
+.button-more:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
+
+/* footer styling */
+
+footer {
+    display:flex;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    background-color: black;
+}
+
+footer>img {
+    width: 32px;
+}
