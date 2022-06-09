@@ -1,4 +1,4 @@
-const API_KEY = 'nOjzgnRK5wSxGHruvjd3HVSux7Zxk46H'
+const API_KEY = 'API KEY HERE'
 
 // GLOBAL CONSTANTS
 
@@ -94,6 +94,6 @@ window.onload = () => {
     form.addEventListener('submit', getResults);
     showMoreButton.addEventListener('click', getResults);
     resetButton.addEventListener('click', cleanResults);
-
+    // retrieve trending results just once
     getTrending();
 }
