@@ -20,7 +20,7 @@ const showMoreButton = sectionEl.querySelector('.button-more');
 let pages = 0;
 let lastUserQuery = '';
 let userQuery = 'cats';
-async function getResults(e, isTrending) {
+async function getResults(e) {
     // prevent the page from reloading
     e.preventDefault();
 
@@ -36,12 +36,8 @@ async function getResults(e, isTrending) {
     console.log(`user submitted: ${userQuery}`);
 
     // send query with predefined parameters
-    let response;
-    if (!isTrending) {
-        response = await fetch(`http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${userQuery}&limit=${limit}&rating=${rating}&lang=${lang}&offset=${pages*limit}`);
-    } else {
-        response = await fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=${limit}&rating=${rating}&lang=${lang}&offset=${pages*limit}`)
-    }
+    response = await fetch(`http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${userQuery}&limit=${limit}&rating=${rating}&lang=${lang}&offset=${pages*limit}`);
+
     // debugging
     console.log(response);
 
@@ -109,5 +105,4 @@ window.onload = () => {
     form.addEventListener('submit', getResults);
     showMoreButton.addEventListener('click', getResults);
     resetButton.addEventListener('click', cleanResults);
-    // trendingButton.addEventListener()
 }
