@@ -21,6 +21,17 @@ let pages = 0;
 let lastUserQuery = '';
 let userQuery = 'foo';
 
+// trending request
+async function getTrending() {
+    let response = await fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=${limit}&rating=${rating}`);
+    // finish request by converting to json
+    let jsonResponse = await response.json();
+
+    // pass data to be displayed
+    displayResults(jsonResponse.data);
+}
+
+// query request
 async function getResults(e) {
     // prevent the page from reloading
     e.preventDefault();
@@ -34,7 +45,7 @@ async function getResults(e) {
     }
 
     // send query with predefined parameters
-    response = await fetch(`http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${userQuery}&limit=${limit}&rating=${rating}&lang=${lang}&offset=${pages*limit}`);
+    let response = await fetch(`http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${userQuery}&limit=${limit}&rating=${rating}&lang=${lang}&offset=${pages*limit}`);
 
     // finish request by converting to json
     let jsonResponse = await response.json();
@@ -44,10 +55,6 @@ async function getResults(e) {
 
     // pass data to be displayed
     displayResults(jsonResponse.data);
-}
-
-const translateMainSection = (main) => {
-    main.style.height = 'fit-content';
 }
 
 const showShowMoreButton = (section) => {
@@ -68,9 +75,6 @@ const cleanResults = () => {
 }
 
 const displayResults = (dataObject) => {
-    // translate main section to the top (will only work for the first time it is ran)
-    translateMainSection(mainEl);
-
     // clear area
     cleanResults();
 
@@ -91,4 +95,5 @@ window.onload = () => {
     showMoreButton.addEventListener('click', getResults);
     resetButton.addEventListener('click', cleanResults);
 
+    getTrending();
 }
