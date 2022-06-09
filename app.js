@@ -1,4 +1,4 @@
-const API_KEY = 'INSERT GIPHY API KEY HERE'
+const API_KEY = 'nOjzgnRK5wSxGHruvjd3HVSux7Zxk46H'
 
 // GLOBAL CONSTANTS
 
@@ -19,8 +19,9 @@ const showMoreButton = sectionEl.querySelector('.button-more');
 // variables
 let pages = 0;
 let lastUserQuery = '';
-let userQuery = 'cats';
-async function getResults(e) {
+let userQuery = 'foo';
+
+async function getResults(e, isShowMore) {
     // prevent the page from reloading
     e.preventDefault();
 
@@ -32,20 +33,11 @@ async function getResults(e) {
         lastUserQuery = userQuery;
     }
 
-    // debugging
-    console.log(`user submitted: ${userQuery}`);
-
     // send query with predefined parameters
     response = await fetch(`http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${userQuery}&limit=${limit}&rating=${rating}&lang=${lang}&offset=${pages*limit}`);
 
-    // debugging
-    console.log(response);
-
     // finish request by converting to json
     let jsonResponse = await response.json();
-
-    // debugging
-    console.log(jsonResponse.data);
 
     // increment pages variable;
     pages++;
@@ -62,10 +54,6 @@ const showShowMoreButton = (section) => {
     if (showMoreButton.classList.contains("hidden")) {
         showMoreButton.classList.remove("hidden");
     }
-
-    // let buttonEl = document.createElement("button");
-    // buttonEl.id = btnMoreId;
-    // buttonEl.textContent = "Show More!";
 }
 
 const hideShowMoreButton = () => {
@@ -86,9 +74,7 @@ const displayResults = (dataObject) => {
     // clear area
     cleanResults();
 
-    // // reset pages as it is a new query
-    // pages = 0;
-
+    // reset pages as it is a new query
     console.log("displaying results...")
     // iterate through object to 
     dataObject.forEach((val) => {
@@ -97,7 +83,6 @@ const displayResults = (dataObject) => {
 
     // add a "Show more!" button
     showShowMoreButton();
-
 }
 
 window.onload = () => {
@@ -105,4 +90,5 @@ window.onload = () => {
     form.addEventListener('submit', getResults);
     showMoreButton.addEventListener('click', getResults);
     resetButton.addEventListener('click', cleanResults);
+
 }
