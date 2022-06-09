@@ -1,4 +1,4 @@
-const API_KEY = 'nOjzgnRK5wSxGHruvjd3HVSux7Zxk46H'
+const API_KEY = 'INSERT GIPHY API KEY HERE'
 
 // GLOBAL CONSTANTS
 
@@ -22,12 +22,12 @@ let lastUserQuery = '';
 let userQuery = 'cats';
 async function getResults(e, isTrending) {
     // prevent the page from reloading
-    e.preventDefault(); 
+    e.preventDefault();
 
     userQuery = form.query.value;
 
     //if query changed, reset pages.
-    if(lastUserQuery !== userQuery){
+    if (lastUserQuery !== userQuery) {
         pages = 0;
         lastUserQuery = userQuery;
     }
@@ -37,7 +37,7 @@ async function getResults(e, isTrending) {
 
     // send query with predefined parameters
     let response;
-    if(!isTrending){
+    if (!isTrending) {
         response = await fetch(`http://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${userQuery}&limit=${limit}&rating=${rating}&lang=${lang}&offset=${pages*limit}`);
     } else {
         response = await fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=${limit}&rating=${rating}&lang=${lang}&offset=${pages*limit}`)
@@ -47,7 +47,7 @@ async function getResults(e, isTrending) {
 
     // finish request by converting to json
     let jsonResponse = await response.json();
-    
+
     // debugging
     console.log(jsonResponse.data);
 
@@ -63,7 +63,7 @@ const translateMainSection = (main) => {
 }
 
 const showShowMoreButton = (section) => {
-    if(showMoreButton.classList.contains("hidden")){
+    if (showMoreButton.classList.contains("hidden")) {
         showMoreButton.classList.remove("hidden");
     }
 
@@ -73,7 +73,7 @@ const showShowMoreButton = (section) => {
 }
 
 const hideShowMoreButton = () => {
-    if(!showMoreButton.classList.contains("hidden")) {
+    if (!showMoreButton.classList.contains("hidden")) {
         showMoreButton.classList.add("hidden");
     }
 }
@@ -86,7 +86,7 @@ const cleanResults = () => {
 const displayResults = (dataObject) => {
     // translate main section to the top (will only work for the first time it is ran)
     translateMainSection(mainEl);
-    
+
     // clear area
     cleanResults();
 
@@ -107,7 +107,7 @@ const displayResults = (dataObject) => {
 window.onload = () => {
     //add listeners here
     form.addEventListener('submit', getResults);
-    showMoreButton.addEventListener('click',getResults);
-    resetButton.addEventListener('click',cleanResults);
+    showMoreButton.addEventListener('click', getResults);
+    resetButton.addEventListener('click', cleanResults);
     // trendingButton.addEventListener()
 }
