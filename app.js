@@ -21,7 +21,7 @@ let pages = 0;
 let lastUserQuery = '';
 let userQuery = 'foo';
 
-async function getResults(e, isShowMore) {
+async function getResults(e) {
     // prevent the page from reloading
     e.preventDefault();
 
