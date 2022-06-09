@@ -24,7 +24,7 @@ body {
 /* top section */
 
 main {
-    height: 90vh;
+    height: fit-content;
     
     display: flex;
     flex-direction: column;
